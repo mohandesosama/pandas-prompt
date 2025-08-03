@@ -1,12 +1,16 @@
+# 🧠 pandas-prompt
 
-# 📊 pandas-prompt
+[![version](https://img.shields.io/badge/version-0.1.0-blue.svg)](https://github.com/mohandesosama/pandas-prompt)
+[![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
+[![pandas](https://img.shields.io/badge/pandas-compatible-brightgreen)](https://pandas.pydata.org/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Issues](https://img.shields.io/github/issues/mohandesosama/pandas-prompt.svg)](https://github.com/mohandesosama/pandas-prompt/issues)
+[![Stars](https://img.shields.io/github/stars/mohandesosama/pandas-prompt.svg?style=social)](https://github.com/mohandesosama/pandas-prompt)
 
-**Version**: `0.1.0`  
-**Language**: Python 3.7+  
-**License**: MIT  
-**Author**: *Osama Hosameldeen*  
-**LLM Backend**: OpenAI-compatible
-**Dependencies**: `pandas`, `openai`, `python-dotenv`
+> ✨ Natural language interface for pandas using LLMs. Extend `DataFrame` with `.prompt()` to talk to your data.
+
+---
+
 
 ---
 
