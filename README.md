@@ -64,7 +64,7 @@ To use with a custom OpenAI-compatible endpoint (e.g., Vocareum):
 
 ```python
 self.client = OpenAI(
-    base_url="https://openai.vocareum.com/v1",
+    base_url="openai url here",
     api_key=os.getenv("OPENAI_API_KEY")
 )
 ```
