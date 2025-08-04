@@ -1,7 +1,13 @@
-# Re-export all of pandas' public API
-from pandas import *  # noqa: F403
-import pandas as pd
-from .prompt import prompt_dataframe
+# pandas_prompt/__init__.py
 
-# Patch .prompt() onto DataFrame
-pd.DataFrame.prompt = prompt_dataframe
+import pandas as _pd
+from pandas_prompt.interface.patch import patch_dataframe
+
+# Apply the patch to add .prompt and .prompt_plot
+patch_dataframe()
+
+# Export all of pandas API
+from pandas import *
+
+# Optionally expose the original pandas under a private alias
+_pd_orig = _pd

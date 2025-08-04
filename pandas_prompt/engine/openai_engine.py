@@ -1,10 +1,10 @@
-from typing import Optional
+import os
 import pandas as pd
 from openai import OpenAI
-import os
 from dotenv import load_dotenv
+from .base import BasePromptEngine
 
-class PromptEngine:
+class OpenAIPromptEngine(BasePromptEngine):
     def __init__(self, model="gpt-3.5-turbo", api_key_env="OPENAI_API_KEY"):
         load_dotenv()
         self.client = OpenAI(
@@ -27,17 +27,3 @@ class PromptEngine:
             temperature=0,
         )
         return response.choices[0].message.content.strip("```python\n").strip("```")
-
-def prompt_dataframe(self, instruction: str, engine: Optional[PromptEngine] = None):
-    if engine is None:
-        engine = PromptEngine()
-
-    code = engine.run(self, instruction)
-    print(f"[PromptPandas] Executing generated code:\n{code}")
-    local_vars = {"df": self}
-    try:
-        exec(code, {}, local_vars)
-        return local_vars.get("result", None)
-    except Exception as e:
-        print("Error executing generated code:", e)
-        return None
