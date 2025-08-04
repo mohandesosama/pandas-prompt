@@ -1,3 +1,6 @@
+# to make this code works locally, do the following 
+# pip install -e .
+
 import pandas_prompt as pdp
 
 df = pdp.read_csv("Sales.csv")
