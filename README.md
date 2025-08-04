@@ -11,9 +11,6 @@
 
 ---
 
-
----
-
 ## 🚀 Overview
 
 `pandas-prompt` is a natural-language interface to the full power of `pandas`.  
@@ -105,13 +102,18 @@ print(result)
 ```
 pandas-prompt/
 ├── pandas_prompt/
-│   ├── __init__.py         ← auto-patches pandas on import
-│   ├── prompt.py           ← PromptEngine + .prompt() logic
-│   ├── patch.py            ← (optional) manual patch logic
-│   ├── .env                ← stores your API key
+│   ├── __init__.py               ← auto-patches pandas on import
+│   ├── interface/
+│   │   ├── patch.py              ← patches DataFrame with prompt methods
+│   │   ├── dataframe_prompt.py   ← prompt and plotting methods
+│   │   └── handler.py            ← prompt handling logic
+│   ├── engine/
+│   │   ├── openai_engine.py      ← OpenAI API engine
+│   │   └── llama_engine.py       ← Local LLaMA model engine
+├── tests/
+│   └── demo_pdp.py               ← sample/test script
 ├── examples/
-│   ├── demo.py             ← sample usage
-│   └── Sales.csv           ← sample dataset
+│   ├── Sales.csv                 ← sample dataset
 ├── requirements.txt
 ├── setup.py
 ├── README.md
@@ -129,10 +131,11 @@ pandas-prompt/
 
 ## ✅ Planned Features
 
+- ✅ Full pandas compatibility
 - ✅ Basic natural language prompt support
-- 🔄 Offline support (e.g., Mistral with `llama-cpp`)
-- 📊 `.prompt_plot()` for visualization tasks
-- 🧠 Multi-turn `.chat()` mode with memory
+- ✅ Offline support (e.g., Mistral with `llama-cpp`)
+- ✅ `.prompt_plot()` for visualization tasks
+- 🔄 Multi-turn `.chat()` mode with memory
 - 📁 PyPI packaging + GitHub Actions
 
 ---
