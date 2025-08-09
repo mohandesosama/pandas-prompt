@@ -1,13 +1,17 @@
-# pandas_prompt/__init__.py
+import pandas as pd
+from .core import PromptAccessor
 
-import pandas as _pd
-from pandas_prompt.interface.patch import patch_dataframe
+# Attach prompt accessor to DataFrame
+pd.DataFrame.prompt = PromptAccessor
 
-# Apply the patch to add .prompt and .prompt_plot
-patch_dataframe()
+# Re-export pandas for full compatibility
+from pandas import *  # noqa
 
-# Export all of pandas API
-from pandas import *
+# Also allow direct usage like pdp.prompt.configure(...)
+prompt = PromptAccessor
 
-# Optionally expose the original pandas under a private alias
-_pd_orig = _pd
+__all__ = [
+    *pd.__all__,
+    "prompt"
+]
+

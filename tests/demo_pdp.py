@@ -1,20 +1,16 @@
-import sys
-import os
-
-# Add the project root to sys.path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
 import pandas_prompt as pdp
 
-# Optional: Force use of llama or openai engine
-# from pandas_prompt.interface.handler import PromptHandler
-# from pandas_prompt.engine.llama_engine import LlamaPromptEngine
-# handler = PromptHandler(LlamaPromptEngine())
+# Configure API/local model
+pdp.prompt.configure(api_key="fake-key", model="gpt-4")
 
-def test_prompt_basic():
-    df = pdp.read_csv("testsales.csv")
-    result = df.prompt("Show me the highest profit")
-    print("Test passed result=", result)
+# Load CSV with standard pandas functionality
+df = pdp.read_csv("testsales.csv")
 
-if __name__ == "__main__":
-    test_prompt_basic()
+# Run a prompt
+print(df.prompt("Show me the top 5 rows"))
+
+# Plot from prompt
+df.prompt.plot("histogram of sales")
+
+# Follow-up query
+print(df.prompt.follow("Now sort by revenue"))
