@@ -2,7 +2,8 @@ import pandas as pd
 from .core import PromptAccessor
 
 # Attach prompt accessor to DataFrame
-pd.DataFrame.prompt = PromptAccessor
+#pd.DataFrame.prompt = PromptAccessor
+pd.api.extensions.register_dataframe_accessor("prompt")(PromptAccessor)
 
 # Re-export pandas for full compatibility
 from pandas import *  # noqa

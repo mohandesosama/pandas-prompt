@@ -1,2 +1,7 @@
-*.env
+# Ignore all .env files
+**/.env
+# Or specifically ignore just the tests/.env file
+/tests/.env
+
 *.gguf
+**/.gguf
