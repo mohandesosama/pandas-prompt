@@ -1,48 +1,22 @@
-# to make this code works locally, do the following 
-# pip install -e .
-
 import sys
+sys.path.append("..")
+
 import os
-import pandas as pd
+from dotenv import load_dotenv  # Import dotenv loader
+import pandas_prompt as pdp
 
-# Ensure the top-level project directory is in the path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# Load environment variables from .env file
+load_dotenv()  # Loads from current directory or specify path: load_dotenv(".env")
 
-from engine.openai_engine import OpenAIPromptEngine
-#from engine.local_engine import LocalLLMPromptEngine
-from interface.handler import PromptHandler
+# Configure API using environment variables
+pdp.prompt.configure(
+    api_key=os.getenv("OPENAI_API_KEY"),  # Get from .env
+    model=os.getenv("OPENAI_MODEL", "gpt-4"),  # Default to gpt-4 if not set
+    api_base=os.getenv("OPENAI_API_BASE", "https://openai.vocareum.com/v1")
+)
 
-def test_openai_prompt():
-    df = pd.DataFrame({
-        "name": ["Alice", "Bob", "Charlie"],
-        "salary": [1000, 2000, 3000]
-    })
+# Load CSV with standard pandas functionality
+df = pdp.read_csv("testsales.csv")
 
-    handler = PromptHandler(OpenAIPromptEngine())
-    result = handler.run_prompt(df, "Show me the average salary")
-    print("[TEST-OpenAI] Output:", result)
-'''
-def test_local_prompt():
-    df = pd.DataFrame({
-        "department": ["HR", "Engineering", "Marketing"],
-        "employees": [5, 12, 8]
-    })
-
-    # Ensure the model file exists or use mock for now
-    model_path = "models/llama-model.gguf"
-    if not os.path.exists(model_path):
-        print("[TEST-Local] Skipped: LLaMA model file not found at", model_path)
-        return
-
-    handler = PromptHandler(LocalLLMPromptEngine(model_path=model_path))
-    result = handler.run_prompt(df, "Show departments with more than 6 employees")
-    print("[TEST-Local] Output:", result)
-
-    '''
-
-if __name__ == "__main__":
-    print(">>> Running OpenAI test...")
-    test_openai_prompt()
-
-    #print("\n>>> Running Local LLM test...")
-    #test_local_prompt()
+# Run a prompt
+print(df.prompt("Show me the top 5 rows according to the Total Profit"))
