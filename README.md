@@ -24,6 +24,37 @@ This is powered by a local or remote LLM (e.g., OpenAI API), which converts the 
 
 ---
 
+## Key Use Cases
+
+### 1. Natural Language Data Querying
+- Interactive Analysis: Execute natural language queries directly against datasets
+- Ad-hoc Exploration: Investigate patterns and relationships through conversational prompts
+- Example: 
+  ```python
+  df.prompt("Show products with highest profit margin in Q4")
+  ```
+2. Dynamic Pattern Visualization
+Real-time Insights: Generate dynamically updating visualizations that reflect live data patterns
+
+Visual Validation: Create responsive graphs that automatically update when underlying data changes
+
+Workflow:
+
+```python
+result = df.prompt("Visualize monthly sales trends")
+result.plot()  # Auto-updates when data refreshes
+```
+3. Iterative Analysis Workflow
+Chained Exploration: Conduct follow-up queries on transformed DataFrames from previous operations
+
+Contextual Investigation: Maintain analysis context across multiple prompt interactions
+
+Example:
+
+```python
+filtered = df.prompt("Show records from California")
+filtered.prompt("Compare revenue by product category")
+```
 ## 📦 Installation
 
 1. Clone the repo:
