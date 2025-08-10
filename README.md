@@ -34,20 +34,20 @@ This is powered by a local or remote LLM (e.g., OpenAI API), which converts the 
   df.prompt("Show products with highest profit margin in Q4")
   ```
 ### 2. Dynamic Pattern Visualization
-Real-time Insights: Generate dynamically updating visualizations that reflect live data patterns
+- Real-time Insights: Generate dynamically updating visualizations that reflect live data patterns
 
-Visual Validation: Create responsive graphs that automatically update when underlying data changes
+- Visual Validation: Create responsive graphs that automatically update when underlying data changes
 
-Workflow:
+- Workflow:
 
 ```python
 result = df.prompt("Visualize monthly sales trends")
 result.plot()  # Auto-updates when data refreshes
 ```
-#### 3. Iterative Analysis Workflow
-Chained Exploration: Conduct follow-up queries on transformed DataFrames from previous operations
+### 3. Iterative Analysis Workflow
+- Chained Exploration: Conduct follow-up queries on transformed DataFrames from previous operations
 
-Contextual Investigation: Maintain analysis context across multiple prompt interactions
+- Contextual Investigation: Maintain analysis context across multiple prompt interactions
 
 Example:
 
