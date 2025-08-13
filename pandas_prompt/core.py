@@ -1,6 +1,4 @@
-from .prompt_manager import PromptManager
-from .core_implementation.plotting import plot_data
-from .core_implementation.follow import follow_conversation
+from .agents import AnalysisAgent, PlottingAgent
 
 class PromptAccessor:
     _config = {}
@@ -16,7 +14,8 @@ class PromptAccessor:
 
     def __init__(self, df):
         self.df = df
-        self.manager = PromptManager(config=self._config)
+        self.analysis_agent = AnalysisAgent(config=self._config)
+        self.plotting_agent = PlottingAgent(config=self._config)
 
     def __call__(self, query: str):
         """
@@ -24,7 +23,9 @@ class PromptAccessor:
         Example:
             df.prompt("Show me the top 5 rows with highest salary")
         """
-        return self.manager.run_query(self.df, query)
+        code = self.analysis_agent.generate_code(self.df, query)
+        #print("Generated Analysis Code:\n", code)
+        return self.analysis_agent.execute(code, self.df)
 
     def plot(self, query: str):
         """

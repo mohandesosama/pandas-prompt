@@ -20,3 +20,4 @@ df = pdp.read_csv("testsales.csv")
 
 # Run a prompt
 print(df.prompt("Show me the top 5 rows according to the Total Profit"))
+#print(df.prompt("Show me the top 5 rows according to the Total Profit").prompt("calculate the avearge Total profit"))

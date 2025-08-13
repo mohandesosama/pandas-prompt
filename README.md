@@ -113,50 +113,12 @@ df = pdp.read_csv("examples/Sales.csv")
 # Ask a question in natural language
 result = df.prompt("Show rows where Sales > 1000")
 print(result)
+
+print(df.prompt("Show me the top 5 rows according to the Total Profit").prompt("calculate the avearge Total profit"))
+# output is 6454.54
 ```
 
 📌 The `.prompt()` method prints the generated code and returns the result of execution (if any).
-
----
-
-## 🧠 How It Works
-
-- Sample 10 rows from the DataFrame
-- Construct a prompt: *“Given this DataFrame: [...], do: [instruction]”*
-- Send to the OpenAI-compatible API
-- Parse and execute the returned Python code in a local sandbox
-
----
-
-## 🔧 Project Structure
-
-```
-pandas-prompt/
-├── pandas_prompt/
-│   ├── __init__.py               ← auto-patches pandas on import
-│   ├── interface/
-│   │   ├── patch.py              ← patches DataFrame with prompt methods
-│   │   ├── dataframe_prompt.py   ← prompt and plotting methods
-│   │   └── handler.py            ← prompt handling logic
-│   ├── engine/
-│   │   ├── openai_engine.py      ← OpenAI API engine
-│   │   └── llama_engine.py       ← Local LLaMA model engine
-├── tests/
-│   └── demo_pdp.py               ← sample/test script
-├── examples/
-│   ├── Sales.csv                 ← sample dataset
-├── requirements.txt
-├── setup.py
-├── README.md
-```
-
----
-
-## 📌 Limitations
-
-- Generated code is executed using `exec()` — avoid unsafe prompts
-- Only supports `df.prompt(...)` (multi-turn not yet implemented)
-- LLM quality depends on prompt and model used
 
 ---
 
