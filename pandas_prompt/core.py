@@ -5,6 +5,8 @@ class PromptAccessor:
 
     @classmethod
     def configure(cls, **kwargs):
+        # cls is refering to the class itself. self is refering to an object of the class
+        # you can call this class immediately such as PromptAccessor.configure()
         """
         Configure API keys, local model paths, or settings.
         Example:
